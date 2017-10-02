@@ -4,10 +4,18 @@
 
 <% @photos.each do |photo| %>
   <div class="card">
-    <div class="card-header"><%= photo.username.capitalize %></div>
+    <div class="card-header">
+      <%= image_tag photo.avatar_url, class: "avatar" %>
+      <%= photo.username.capitalize %>
+      <div class="display-time">
+        <%= time_ago_in_words(photo.created_at) %> ago
+      </div>
+    </div>
     <%= image_tag photo.url, class: "card-img-top", alt: "photo"%>
     <div class="card-block">
-      <p class="card-text"><%= photo.caption %></div>
+      <p class="card-text"><%= photo.caption %></p>
+      <%= photo.caption %>
+      <%= photo.likes_count %> likes
     </div>
   </div>
 <% end %>
