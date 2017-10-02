@@ -5,7 +5,9 @@
 <% @photos.each do |photo| %>
   <div class="card">
     <div class="card-header">
-      <%= image_tag photo.avatar_url, class: "avatar" %>
+      <% if photo.avatar_url %>
+        <%= image_tag photo.avatar_url, class: "avatar" %>
+      <% end %>
       <%= photo.username.capitalize %>
       <div class="display-time">
         <%= time_ago_in_words(photo.created_at) %> ago
@@ -14,8 +16,9 @@
     <%= image_tag photo.url, class: "card-img-top", alt: "photo"%>
     <div class="card-block">
       <p class="card-text"><%= photo.caption %></p>
-      <%= photo.caption %>
-      <%= photo.likes_count %> likes
+      <% if photo.likes_count %>
+        <%= pluralize(photo.likes_count, "likes") %>
+      <% end %>
     </div>
   </div>
 <% end %>
