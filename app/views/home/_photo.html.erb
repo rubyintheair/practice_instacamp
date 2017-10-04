@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-header">
+    <% if photo.avatar_url %>
+      <%= image_tag photo.avatar_url, class: "avatar" %>
+    <% end %>
+    <%= photo.username.capitalize %>
+    <div class="display-time">
+      <%= time_ago_in_words(photo.created_at) %> ago
+    </div>
+  </div>
+  <%= image_tag photo.url, class: "card-img-top", alt: "photo"%>
+  <% if photo.caption.present? %>
+  <div class="card-block">
+      <p class="card-text"><%= photo.caption %></p>
+    <% if photo.likes_count %>
+      <%= pluralize(photo.likes_count, "likes") %>
+    <% end %>
+  </div>
+  <% end %>
+
+  <div class="card-footer">
+  <% if photo.comments.present? %>
+    <% photo.comments.each do |comment| %>
+      <div class="comment">
+        <strong><%= comment.username %></strong>
+        <%= comment.body %>
+      </div>
+    <% end %>
+  <% else %>
+    No comment yet.
+  <% end %>
+  </div>
+  
+</div>
