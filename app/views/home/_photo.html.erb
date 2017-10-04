@@ -21,10 +21,7 @@
   <div class="card-footer">
   <% if photo.comments.present? %>
     <% photo.comments.each do |comment| %>
-      <div class="comment">
-        <strong><%= comment.username %></strong>
-        <%= comment.body %>
-      </div>
+      <%= render "comment", comment: comment %>
     <% end %>
   <% else %>
     No comment yet.
