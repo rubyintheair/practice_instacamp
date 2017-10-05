@@ -14,6 +14,24 @@ class PhotosController < ApplicationController
     end 
   end 
 
+  def destroy 
+    @photo = Photo.find(params[:id])
+    @photo.destroy 
+    if @photo.destroyed?
+      flash[:success] = "Photo deleted!!!."
+    else
+      flash[:error] = "Error: #{@photo.errors.full_messages.to_sentence}"
+    end
+    redirect_to root_path
+  end 
+
+  def show 
+    @photos = Photo.all
+    redirect_to root_path
+  end 
+
+
+  private
   def photo_params
     params.require(:photo).permit(:username, :url, :caption)
   end 
