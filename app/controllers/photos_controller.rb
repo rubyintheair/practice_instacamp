@@ -25,11 +25,14 @@ class PhotosController < ApplicationController
     redirect_to root_path
   end 
 
-  def show 
-    @photos = Photo.all
-    redirect_to root_path
+  def update
+    @photo = Photo.find(params[:id])
+    if @photo.update(photo_params)
+      redirect_to root_path
+    else 
+      render "edit"
+    end 
   end 
-
 
   private
   def photo_params
